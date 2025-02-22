@@ -1,5 +1,6 @@
 import MentalHealthChart from "./mental-health-chart"
 import MentalHealthDetails from "./mental-health-details"
+import MentalHealthSymptoms from "./mental-health-symptoms"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function MentalHealthPage() {
@@ -14,6 +15,7 @@ export default function MentalHealthPage() {
         </CardContent>
       </Card>
       <MentalHealthDetails />
+      <MentalHealthSymptoms />
     </div>
   )
 }
