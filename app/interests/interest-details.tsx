@@ -1,60 +1,66 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Book, Palette, Music, ClubIcon as Football } from "lucide-react"
+import { Progress } from "@/components/ui/progress"
+import { Users, Heart, School, Frown } from "lucide-react"
 
 const interestDetails = [
   {
-    name: "読書",
-    icon: Book,
-    description: "様々なジャンルの本を読むことに興味を持っています。特にファンタジーと科学の本が好きです。",
-    recentActivity: "先週は「ハリーポッター」シリーズを2冊読みました。",
-    recommendation: "科学雑誌の定期購読を始めてみるのはいかがでしょうか？",
+    category: "人間関係",
+    icon: Users,
+    items: [
+      { name: "家族関係", value: 80, description: "家族との関係は良好で、コミュニケーションが取れています。" },
+      { name: "友人関係", value: 70, description: "友人との関係は概ね良好ですが、時々小さな問題があります。" },
+    ],
   },
   {
-    name: "アート",
-    icon: Palette,
-    description: "絵を描くことや工作を楽しんでいます。色彩豊かな作品を作るのが得意です。",
-    recentActivity: "水彩画のクラスに参加し、風景画を描きました。",
-    recommendation: "地元の美術館でワークショップが開催されています。参加してみましょう。",
+    category: "学校生活",
+    icon: School,
+    items: [
+      { name: "学校生活", value: 75, description: "学校生活には概ね適応していますが、一部の科目で課題があります。" },
+    ],
   },
   {
-    name: "音楽",
-    icon: Music,
-    description: "音楽を聴くのが大好きで、最近はギターの練習を始めました。",
-    recentActivity: "初めての曲を完璧に弾けるようになりました。",
-    recommendation: "学校の音楽部に参加してみるのはどうでしょうか？",
+    category: "好きなこと",
+    icon: Heart,
+    items: [{ name: "好きなこと", value: 85, description: "様々な活動や趣味に興味を持ち、積極的に取り組んでいます。" }],
   },
   {
-    name: "スポーツ",
-    icon: Football,
-    description: "体を動かすのが好きで、特にサッカーに興味があります。",
-    recentActivity: "地域のジュニアサッカーチームの試合に参加しました。",
-    recommendation: "他のスポーツも試してみましょう。水泳教室が始まるそうです。",
+    category: "嫌いなこと",
+    icon: Frown,
+    items: [
+      {
+        name: "嫌いなこと",
+        value: 40,
+        description: "苦手なことや避けたいことがいくつかありますが、徐々に克服しようとしています。",
+      },
+    ],
   },
 ]
 
 export default function InterestDetails() {
   return (
     <div className="grid gap-6 md:grid-cols-2">
-      {interestDetails.map((interest) => (
-        <Card key={interest.name}>
+      {interestDetails.map((category) => (
+        <Card key={category.category}>
           <CardHeader>
             <CardTitle className="flex items-center">
-              <interest.icon className="mr-2" />
-              {interest.name}
+              <category.icon className="mr-2" />
+              {category.category}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="mb-2">{interest.description}</p>
-            <p className="mb-2">
-              <strong>最近の活動:</strong> {interest.recentActivity}
-            </p>
-            <p>
-              <strong>おすすめ:</strong> {interest.recommendation}
-            </p>
+            {category.items.map((item) => (
+              <div key={item.name} className="mb-4">
+                <div className="flex justify-between items-center mb-1">
+                  <span>{item.name}</span>
+                  <span>{item.value}%</span>
+                </div>
+                <Progress value={item.value} className="mb-2" />
+                <p className="text-sm text-gray-600">{item.description}</p>
+              </div>
+            ))}
           </CardContent>
         </Card>
       ))}
     </div>
   )
 }
-
