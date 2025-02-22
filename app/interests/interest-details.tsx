@@ -1,34 +1,41 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { Users, Heart, School, Frown } from "lucide-react"
+import { Users, Heart, School, Frown, Home } from "lucide-react"
 
 const interestDetails = [
   {
-    category: "人間関係",
+    category: "友人関係",
     icon: Users,
     items: [
-      { name: "家族関係", value: 80, description: "家族との関係は良好で、コミュニケーションが取れています。" },
-      { name: "友人関係", value: 70, description: "友人との関係は概ね良好ですが、時々小さな問題があります。" },
+      { value: 70, description: "友人との関係は概ね良好ですが、時々小さな問題があります。" },
+    ],
+  },
+  {
+    category: "家族関係",
+    icon: Home,
+    items: [
+      { value: 80, description: "家族との関係は良好で、コミュニケーションが取れています。" },
     ],
   },
   {
     category: "学校生活",
     icon: School,
     items: [
-      { name: "学校生活", value: 75, description: "学校生活には概ね適応していますが、一部の科目で課題があります。" },
+      { value: 75, description: "学校生活には概ね適応していますが、一部の科目で課題があります。" },
     ],
   },
   {
     category: "好きなこと",
     icon: Heart,
-    items: [{ name: "好きなこと", value: 85, description: "様々な活動や趣味に興味を持ち、積極的に取り組んでいます。" }],
+    items: [
+      { value: 85, description: "様々な活動や趣味に興味を持ち、積極的に取り組んでいます。" },
+    ],
   },
   {
     category: "嫌いなこと",
     icon: Frown,
     items: [
       {
-        name: "嫌いなこと",
         value: 40,
         description: "苦手なことや避けたいことがいくつかありますが、徐々に克服しようとしています。",
       },
@@ -48,10 +55,9 @@ export default function InterestDetails() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {category.items.map((item) => (
-              <div key={item.name} className="mb-4">
-                <div className="flex justify-between items-center mb-1">
-                  <span>{item.name}</span>
+            {category.items.map((item, index) => (
+              <div key={index} className="mb-4">
+                <div className="flex justify-end items-center mb-1">
                   <span>{item.value}%</span>
                 </div>
                 <Progress value={item.value} className="mb-2" />

@@ -3,10 +3,11 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts"
 
 const data = [
-  { name: "読書", value: 30 },
-  { name: "アート", value: 25 },
-  { name: "音楽", value: 20 },
-  { name: "スポーツ", value: 25 },
+  { name: "家族関係", value: 30 },
+  { name: "友人関係", value: 25 },
+  { name: "学校生活", value: 20 },
+  { name: "好きなこと", value: 25 },
+  { name: "嫌いなこと", value: 20 },
 ]
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"]
