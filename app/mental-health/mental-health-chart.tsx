@@ -17,7 +17,7 @@ export default function MentalHealthChart() {
       <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
         <PolarGrid />
         <PolarAngleAxis dataKey="category" />
-        <PolarRadiusAxis angle={30} domain={[0, 100]} />
+        <PolarRadiusAxis angle={90} domain={[0, 100]} />
         <Radar name="メンタルヘルス" dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
         <Tooltip />
       </RadarChart>

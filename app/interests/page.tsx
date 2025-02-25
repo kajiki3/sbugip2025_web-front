@@ -9,7 +9,7 @@ export default function InterestsPage() {
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>興味・関心の概要</CardTitle>
+            <CardTitle>概要</CardTitle>
           </CardHeader>
           <CardContent>
             <InterestChart />

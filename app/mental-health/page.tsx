@@ -8,7 +8,7 @@ export default function MentalHealthPage() {
     <div className="grid gap-6">
       <Card>
         <CardHeader>
-          <CardTitle>メンタルヘルスの概要</CardTitle>
+          <CardTitle>概要</CardTitle>
         </CardHeader>
         <CardContent>
           <MentalHealthChart />
