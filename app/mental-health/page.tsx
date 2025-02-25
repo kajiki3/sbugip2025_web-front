@@ -31,7 +31,7 @@ export default function MentalHealthPage() {
           <MentalHealthChart mentalHealth={mentalHealth} />
         </CardContent>
       </Card>
-      <MentalHealthDetails />
+      <MentalHealthDetails mentalHealth={mentalHealth} />
       <MentalHealthSymptoms />
     </div>
   )
