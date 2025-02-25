@@ -30,12 +30,12 @@ export default function InterestsPage() {
             <CardTitle>概要</CardTitle>
           </CardHeader>
           <CardContent>
-            <InterestChart />
+            <InterestChart analysis={analysis} />
           </CardContent>
         </Card>
         <WordCloud />
       </div>
-      <InterestDetails />
+      <InterestDetails analysis={analysis} />
     </div>
   )
 }
