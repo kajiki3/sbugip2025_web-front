@@ -5,19 +5,26 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { HARD_BACK_URL } from "@/lib/constants"
+import axios from "axios"
 
 export default function QAComponent() {
     const [isAsking, setIsAsking] = useState(false)
     const [question, setQuestion] = useState("")
     const [answer, setAnswer] = useState("")
 
+
     const handleAsk = async () => {
         if (!question) return
 
         setIsAsking(true)
-        // ここで実際のAI APIを呼び出します。この例ではダミーの応答を使用しています。
-        await new Promise((resolve) => setTimeout(resolve, 1000)) // APIリクエストをシミュレート
-        setAnswer(`これは「${question}」に対するダミーの回答です。実際の実装では、ここでAI APIからの応答を表示します。`)
+        try {
+            const response = await axios.post(`${HARD_BACK_URL}/search/rag`, { question })
+            setAnswer(response.data || "回答が見つかりませんでした。")
+        } catch (error) {
+            console.error("質問送信中にエラーが発生しました:", error)
+            setAnswer("エラーが発生しました。")
+        }
         setIsAsking(false)
     }
 
