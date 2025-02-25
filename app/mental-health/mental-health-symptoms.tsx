@@ -1,14 +1,20 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Mental } from "@/lib/types"
 import { CheckCircle2, XCircle } from "lucide-react"
 
-const symptoms = [
-    { name: "体の症状", present: true },
-    { name: "精神症状", present: false },
-    { name: "自傷行為", present: false },
-    { name: "不眠症", present: true },
-]
 
-export default function MentalHealthSymptoms() {
+interface MentalHealthChartProps {
+    mentalHealth: Mental | null
+}
+
+export default function MentalHealthSymptoms({ mentalHealth }: MentalHealthChartProps) {
+    if (!mentalHealth) return null
+    const symptoms = [
+        { name: "体の症状", present: mentalHealth.physical_symptoms },
+        { name: "精神症状", present: mentalHealth.mental_symptoms },
+        { name: "自傷行為", present: mentalHealth.self_harm },
+        { name: "不眠症", present: mentalHealth.insomnia },
+    ]
     return (
         <Card>
             <CardHeader>
