@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "axios"
 import InterestChart from "./interest-chart"
 import InterestDetails from "./interest-details"
