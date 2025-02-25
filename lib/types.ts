@@ -6,7 +6,6 @@ export interface MentalItem {
 }
 
 export interface Mental {
-    id: string;                        // UUID 形式の文字列
     date: string;                      // "YYYY-MM-DD" 形式の文字列（Date 型に変換することも可能）
     friendship: MentalItem;            // 友人関係
     school: MentalItem;                // 学校
@@ -18,4 +17,12 @@ export interface Mental {
     mental_symptoms: boolean;          // 精神症状
     self_harm: boolean;                // 自傷行為
     insomnia: boolean;                 // 不眠症
+}
+
+export interface Analysis {
+    familyship: string;  // 家族関係
+    friendship: string;  // 友人関係
+    school_life: string; // 学校生活
+    likes: string;       // 好きなこと
+    dislikes: string;    // 嫌いなこと
 }
