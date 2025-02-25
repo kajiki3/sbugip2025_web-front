@@ -5,7 +5,6 @@ import InterestChart from "./interest-chart"
 import InterestDetails from "./interest-details"
 import WordCloud from "./word-cloud"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { HARD_BACK_URL } from "@/lib/constants"
 import { Analysis } from "@/lib/types"
 import { useEffect, useState } from "react"
 
@@ -14,7 +13,7 @@ export default function InterestsPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<Analysis>(`${HARD_BACK_URL}/analysis/latest`)
+        const response = await axios.get<Analysis>(`api/analysis/latest`)
         console.log(response.data)
         setAnalysis(response.data)
       } catch (error) {

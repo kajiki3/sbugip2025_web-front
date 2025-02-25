@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import axios from "axios"
-import { HARD_BACK_URL } from "@/lib/constants"
 import MentalHealthChart from "./mental-health-chart"
 import MentalHealthDetails from "./mental-health-details"
 import MentalHealthSymptoms from "./mental-health-symptoms"
@@ -14,7 +13,7 @@ export default function MentalHealthPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get<Mental>(`${HARD_BACK_URL}/mental/latest`)
+        const response = await axios.get<Mental>('api/mental/latest')
         setMentalHealth(response.data)
       } catch (error) {
         console.error("データ取得中にエラーが発生しました:", error)
