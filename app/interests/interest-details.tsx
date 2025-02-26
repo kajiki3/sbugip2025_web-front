@@ -2,6 +2,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Analysis } from "@/lib/types"
 import { Users, Heart, School, Frown, Home } from "lucide-react"
+
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28AFF"]
+
 interface AnalysisChartProps {
   analysis: Analysis | null
 }
@@ -42,26 +45,27 @@ export default function InterestDetails({ analysis }: AnalysisChartProps) {
       category: "嫌いなこと",
       icon: Frown,
       items: [
-        {
-          value: analysis.conversation_rates.dislikes,
-          description: analysis.dislikes,
-        },
+        { value: analysis.conversation_rates.dislikes, description: analysis.dislikes },
       ],
     },
   ]
+
   return (
     <div className="grid gap-6 md:grid-cols-2">
-      {interestDetails.map((category) => (
+      {interestDetails.map((category, index) => (
         <Card key={category.category}>
           <CardHeader>
-            <CardTitle className="flex items-center">
+            <CardTitle
+              className="flex items-center"
+              style={{ color: COLORS[index % COLORS.length] }} // タイトルに色を付ける
+            >
               <category.icon className="mr-2" />
               {category.category}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {category.items.map((item, index) => (
-              <div key={index} className="mb-4">
+            {category.items.map((item, idx) => (
+              <div key={idx} className="mb-4">
                 <div className="flex justify-end items-center mb-1">
                   <span>{item.value}%</span>
                 </div>

@@ -12,6 +12,8 @@ interface MentalHealthDetailsProps {
 export default function MentalHealthDetails({ mentalHealth }: MentalHealthDetailsProps) {
   if (!mentalHealth) return null
 
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28AFF", "#FFA07A"]
+
   const mentalDetails = [
     {
       name: "友人関係",
@@ -47,10 +49,13 @@ export default function MentalHealthDetails({ mentalHealth }: MentalHealthDetail
 
   return (
     <div className="grid gap-6 md:grid-cols-2">
-      {mentalDetails.map((item) => (
+      {mentalDetails.map((item, index) => (
         <Card key={item.name}>
           <CardHeader>
-            <CardTitle className="flex items-center">
+            <CardTitle
+              className="flex items-center"
+              style={{ color: COLORS[index % COLORS.length] }}  // インラインスタイルでタイトルに色を適用
+            >
               <item.icon className="mr-2" />
               {item.name}
             </CardTitle>
