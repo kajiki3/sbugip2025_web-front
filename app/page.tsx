@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <main className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-8 text-center">ダッシュボード</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center">お子さまレポート</h1>
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="interests">興味・関心</TabsTrigger>
