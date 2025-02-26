@@ -24,10 +24,15 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: '/api/search/rag',
+        destination: '/api/proxy/search/rag'
+      },
+      {
         source: '/api/:path*',
         destination:
           'http://hardware-backend-alb-1335368156.ap-northeast-1.elb.amazonaws.com/:path*',
       },
+
     ]
   },
 }

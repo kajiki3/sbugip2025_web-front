@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import InterestsPage from "./interests/page"
 import MentalHealthPage from "./mental-health/page"
-import QAComponent from "./qa-component"
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("interests")
