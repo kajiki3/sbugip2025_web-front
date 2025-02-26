@@ -30,9 +30,7 @@ export default function WordCloud() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log('fetching data word cloud')
         const response = await axios.get(`api/word_cloud/latest`)
-        console.log(response.data.words)
         setWords(response.data.words)
       } catch (error) {
         console.error("データ取得中にエラーが発生しました:", error)
@@ -45,7 +43,6 @@ export default function WordCloud() {
   }, [])
 
   const renderWordCloud = () => {
-    console.log(words)
     if (!Array.isArray(words) || words.length === 0) {
       return <p>データがありません。</p>
     }

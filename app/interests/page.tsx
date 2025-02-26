@@ -15,7 +15,6 @@ export default function InterestsPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get<Analysis>(`api/analysis/latest`)
-        console.log(response.data)
         setAnalysis(response.data)
       } catch (error) {
         console.error("データ取得中にエラーが発生しました:", error)
