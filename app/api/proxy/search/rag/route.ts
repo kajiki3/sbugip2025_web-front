@@ -6,7 +6,6 @@ interface CustomRequestInit extends RequestInit {
     duplex?: "half";
 }
 
-// ✅ POST メソッドに対応する関数を named export する
 export async function POST(request: NextRequest) {
     const url = new URL("http://hardware-backend-alb-1335368156.ap-northeast-1.elb.amazonaws.com/search/rag");
 

@@ -19,10 +19,18 @@ export interface Mental {
     insomnia: boolean;                 // 不眠症
 }
 
+type ConversationRates = {
+    familyship: number;
+    friendship: number;
+    school_life: number;
+    likes: number;
+    dislikes: number;
+};
 export interface Analysis {
     familyship: string;  // 家族関係
     friendship: string;  // 友人関係
     school_life: string; // 学校生活
     likes: string;       // 好きなこと
     dislikes: string;    // 嫌いなこと
+    conversation_rates: ConversationRates;
 }

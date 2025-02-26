@@ -14,28 +14,28 @@ export default function InterestDetails({ analysis }: AnalysisChartProps) {
       category: "友人関係",
       icon: Users,
       items: [
-        { value: 70, description: analysis.friendship },
+        { value: analysis.conversation_rates.friendship, description: analysis.friendship },
       ],
     },
     {
       category: "家族関係",
       icon: Home,
       items: [
-        { value: 80, description: analysis.familyship },
+        { value: analysis.conversation_rates.familyship, description: analysis.familyship },
       ],
     },
     {
       category: "学校生活",
       icon: School,
       items: [
-        { value: 75, description: analysis.school_life },
+        { value: analysis.conversation_rates.school_life, description: analysis.school_life },
       ],
     },
     {
       category: "好きなこと",
       icon: Heart,
       items: [
-        { value: 85, description: analysis.likes },
+        { value: analysis.conversation_rates.likes, description: analysis.likes },
       ],
     },
     {
@@ -43,7 +43,7 @@ export default function InterestDetails({ analysis }: AnalysisChartProps) {
       icon: Frown,
       items: [
         {
-          value: 40,
+          value: analysis.conversation_rates.dislikes,
           description: analysis.dislikes,
         },
       ],
