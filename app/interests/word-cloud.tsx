@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import dynamic from "next/dynamic"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
+import axios from "axios"
 
 // Dynamically import ReactWordcloud with SSR disabled
 const ReactWordcloud = dynamic(() => import("react-wordcloud"), {
@@ -11,24 +12,6 @@ const ReactWordcloud = dynamic(() => import("react-wordcloud"), {
   loading: () => <Skeleton className="w-full h-[400px]" />,
 })
 
-// ダミーデータ（実際の実装では、バックエンドからデータを取得します）
-const dummyWords = [
-  { text: "本", value: 64 },
-  { text: "絵", value: 41 },
-  { text: "音楽", value: 35 },
-  { text: "サッカー", value: 32 },
-  { text: "科学", value: 28 },
-  { text: "友達", value: 26 },
-  { text: "学校", value: 24 },
-  { text: "ゲーム", value: 22 },
-  { text: "家族", value: 20 },
-  { text: "動物", value: 18 },
-  { text: "宿題", value: 16 },
-  { text: "公園", value: 14 },
-  { text: "テレビ", value: 12 },
-  { text: "旅行", value: 10 },
-  { text: "お菓子", value: 8 },
-]
 
 const options = {
   rotations: 2,
@@ -40,17 +23,22 @@ const options = {
 }
 
 export default function WordCloud() {
-  const [words, setWords] = useState<{ text: string; value: number }[]>([])
+  const [words, setWords] = useState<{ word: string; frequency: number }[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Simulate API call with setTimeout
-    const fetchData = () => {
-      setTimeout(() => {
-        setWords(dummyWords)
+    const fetchData = async () => {
+      try {
+        console.log('fetching data word cloud')
+        const response = await axios.get(`api/word_cloud/latest`)
+        console.log(response.data.words)
+        setWords(response.data.words)
+      } catch (error) {
+        console.error("データ取得中にエラーが発生しました:", error)
+      } finally {
         setIsLoading(false)
-      }, 1000) // Simulate 1 second delay
+      }
     }
 
     fetchData()
@@ -63,7 +51,8 @@ export default function WordCloud() {
     }
 
     try {
-      return <ReactWordcloud words={words} options={options} />
+      const formattedWords = words.map(({ word, frequency }) => ({ text: word, value: frequency }))
+      return <ReactWordcloud words={formattedWords} options={options} />
     } catch (err) {
       console.error("Error rendering WordCloud:", err)
       return <p>ワードクラウドの表示中にエラーが発生しました。</p>
@@ -74,7 +63,7 @@ export default function WordCloud() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>チャット履歴ワードクラウド</CardTitle>
+          <CardTitle>チャットワードクラウド</CardTitle>
         </CardHeader>
         <CardContent>
           <Skeleton className="w-full h-[400px]" />
@@ -87,7 +76,7 @@ export default function WordCloud() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>チャット履歴ワードクラウド</CardTitle>
+          <CardTitle>チャットワードクラウド</CardTitle>
         </CardHeader>
         <CardContent>
           <p>エラーが発生しました: {error}</p>
@@ -99,7 +88,7 @@ export default function WordCloud() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>チャット履歴ワードクラウド</CardTitle>
+        <CardTitle>チャットワードクラウド</CardTitle>
       </CardHeader>
       <CardContent>
         <div style={{ height: "400px", width: "100%" }}>{typeof window !== "undefined" && renderWordCloud()}</div>
