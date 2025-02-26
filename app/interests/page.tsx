@@ -7,6 +7,7 @@ import WordCloud from "./word-cloud"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Analysis } from "@/lib/types"
 import { useEffect, useState } from "react"
+import QAComponent from "../qa-component";
 
 export default function InterestsPage() {
   const [analysis, setAnalysis] = useState<Analysis | null>(null)
@@ -35,6 +36,9 @@ export default function InterestsPage() {
           </CardContent>
         </Card>
         <WordCloud />
+      </div>
+      <div className="mt-8">
+        <QAComponent />
       </div>
       <InterestDetails analysis={analysis} />
     </div>

@@ -24,9 +24,7 @@ export default function Home() {
           <MentalHealthPage />
         </TabsContent>
       </Tabs>
-      <div className="mt-8">
-        <QAComponent />
-      </div>
+
     </main>
   )
 }

@@ -7,6 +7,7 @@ import MentalHealthDetails from "./mental-health-details"
 import MentalHealthSymptoms from "./mental-health-symptoms"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mental } from "@/lib/types"
+import QAComponent from "../qa-component";
 
 export default function MentalHealthPage() {
   const [mentalHealth, setMentalHealth] = useState<Mental | null>(null)
@@ -32,6 +33,9 @@ export default function MentalHealthPage() {
           <MentalHealthChart mentalHealth={mentalHealth} />
         </CardContent>
       </Card>
+      <div className="mt-8">
+        <QAComponent />
+      </div>
       <MentalHealthDetails mentalHealth={mentalHealth} />
       <MentalHealthSymptoms mentalHealth={mentalHealth} />
     </div>
