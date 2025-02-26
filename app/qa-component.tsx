@@ -12,7 +12,6 @@ export default function QAComponent() {
     const handleAsk = async () => {
         if (!question) return
 
-        // 以前の回答をリセット
         setAnswer("")
         setIsAsking(true)
         try {
@@ -24,29 +23,21 @@ export default function QAComponent() {
                 body: JSON.stringify({ question })
             })
 
-            // ブラウザがReadableStreamに対応しているか確認
             if (!response.body) {
                 throw new Error("ストリームがサポートされていません。")
             }
 
-            // ストリームからデータを逐次読み取る
             const reader = response.body.getReader()
             const decoder = new TextDecoder()
             let done = false
-            let accumulatedAnswer = ""  // ローカル変数で受信内容を蓄積
+            let accumulatedAnswer = ""
 
             while (!done) {
                 const { value, done: doneReading } = await reader.read()
                 done = doneReading
-                // チャンクをデコードしてローカル変数に追加
                 const chunk = decoder.decode(value, { stream: true })
                 accumulatedAnswer += chunk
 
-                // 各チャンク受信ごとにログ出力（state ではなくローカル変数の内容を確認）
-                console.log("受信したチャンク:", chunk)
-                console.log("累積された回答:", accumulatedAnswer)
-
-                // 最新の累積結果を state に反映して UI を更新
                 setAnswer(accumulatedAnswer)
             }
         } catch (error) {
