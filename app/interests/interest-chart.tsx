@@ -22,11 +22,11 @@ export default function InterestChart({ analysis }: AnalysisChartProps) {
   if (!analysis) return null
 
   const data = [
-    { name: "家族関係", value: 30 },
-    { name: "友人関係", value: 25 },
-    { name: "学校生活", value: 20 },
-    { name: "好きなこと", value: 25 },
-    { name: "嫌いなこと", value: 20 },
+    { name: "家族関係", value: analysis.conversation_rates.familyship },
+    { name: "友人関係", value: analysis.conversation_rates.friendship },
+    { name: "学校生活", value: analysis.conversation_rates.school_life },
+    { name: "好きなこと", value: analysis.conversation_rates.likes },
+    { name: "嫌いなこと", value: analysis.conversation_rates.dislikes },
   ]
 
   return (
