@@ -56,6 +56,9 @@ export default function MentalHealthDetails({ mentalHealth }: MentalHealthDetail
             </CardTitle>
           </CardHeader>
           <CardContent>
+            <div className="flex justify-end items-center mb-1">
+              <span>{item.data.point}%</span>
+            </div>
             <Progress value={item.data.point} className="mb-2" />
             <p className="mb-2">{item.data.overall}</p>
             <p className="mb-2">
