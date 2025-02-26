@@ -1,8 +1,7 @@
 import type { NextRequest } from "next/server";
 
-export const config = {
-    runtime: "edge", // Edge Runtime を使用（軽量・高速）
-};
+export const runtime = "edge";
+
 interface CustomRequestInit extends RequestInit {
     duplex?: "half";
 }
